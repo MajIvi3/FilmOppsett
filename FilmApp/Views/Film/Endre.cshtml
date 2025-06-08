@@ -1,0 +1,66 @@
+﻿@model FilmModel
+
+@{
+    ViewBag.Title = $"{ViewBag.Action}";
+}
+
+<style>
+    body {
+        background: url('/images/background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Montserrat', sans-serif;
+        color: #de9e8e;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+        min-height: 100vh;
+        padding: 50px 20px;
+    }
+
+    h2, label {
+        color: white;
+    }
+
+    .btn-custom {
+        background-color: #30D5C8;
+        border: none;
+        color: white;
+    }
+
+        .btn-custom:hover {
+            background-color: #008080;
+        }
+</style>
+
+<div class="overlay">
+    <div class="container">
+        <h2 class="mb-4">@ViewBag.Action</h2>
+
+        <form asp-action="EndreTxt" method="post">
+            
+
+            <div class="mb-3">
+                <label asp-for="Navn" class="form-label">Film Navn</label>
+                <input asp-for="Navn" class="form-control" />
+                <span asp-validation-for="Navn" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AAr" class="form-label">År</label>
+                <input asp-for="AAr" class="form-control" />
+                <span asp-validation-for="AAr" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Poeng" class="form-label">Poeng</label>
+                <input asp-for="Poeng" class="form-control" />
+                <span asp-validation-for="Poeng" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" asp-for="Id" /> <!--We do not want to show the Movie ID-->
+            <button type="submit" class="btn btn-custom me-2">Lagre</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Angre</a> <!--Legger ikke til en ny film, den sender oss hun til Home page-->
+        </form>
+    </div>
+</div>

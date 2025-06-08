@@ -1,0 +1,67 @@
+﻿@model List<FilmModel>
+
+@{
+    ViewData["Title"] = "Film Oversikt";
+}
+
+<style>
+    body {
+        background: url('/images/background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+        min-height: 100vh;
+        padding: 50px 20px;
+    }
+
+    h1, p, th, td, a {
+        color: white;
+    }
+
+    .btn-custom {
+        background-color: #30D5C8;
+        border: none;
+    }
+
+        .btn-custom:hover {
+            background-color: #008080;
+        }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+</style>
+
+<div class="overlay">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Filmoversikt</h1>
+        <a asp-controller="Film" asp-action="LeggTil" class="btn btn-custom btn-lg mt-3">Legg til en ny film</a>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var film in Model)
+            {
+                <div class="col">
+                    <div class="card bg-dark text-white h-100 shadow-lg border-0">
+                        
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title">@film.Navn</h5>
+                                <p class="card-text">@film.AAr - Poeng: @film.Poeng</p>
+                            </div>
+                            <div>
+                                <a asp-controller="Film" asp-action="Endre" asp-route-id="@film.Id" class="btn btn-outline-light btn-sm">Endre</a>
+                                <a asp-controller="Film" asp-action="Slett" asp-route-id="@film.Id" class="btn btn-outline-danger btn-sm ms-2">Slett</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

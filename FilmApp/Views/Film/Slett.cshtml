@@ -1,0 +1,47 @@
+﻿@model FilmModel
+
+@{
+    ViewBag.Title = "Slett Film";
+}
+
+<style>
+    body {
+        background: url('/images/background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+        min-height: 100vh;
+        padding: 50px 20px;
+    }
+
+    h2, h3 {
+        color: white;
+    }
+
+    .btn-custom {
+        background-color: #30D5C8;
+        border: none;
+        color: white;
+    }
+
+        .btn-custom:hover {
+            background-color: #008080;
+        }
+</style>
+
+<div class="overlay">
+    <div class="container">
+        <h2 class="mb-3">Bekreft sletting</h2>
+        <h3 class="mb-4">@Model.Navn</h3>
+
+        <form asp-action="Slett" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger me-2">Slett</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Angre</a>
+        </form>
+    </div>
+</div>
